@@ -1,0 +1,19 @@
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+
+        int[] dp = new int[n];
+
+        // Base cases
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+
+        // Fill DP array
+        for (int i = 2; i < n; i++) {
+            dp[i] = cost[i] + Math.min(dp[i - 1], dp[i - 2]);
+        }
+
+        // Top can be reached from last or second last stair
+        return Math.min(dp[n - 1], dp[n - 2]);
+    }
+}
